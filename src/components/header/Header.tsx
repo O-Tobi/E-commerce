@@ -1,15 +1,17 @@
 import { NavText } from "../../utils/index.js";
 import Navigation from "./Navigation";
-import { LogAndProf } from "../../utils/index.js";
-import LoginAndProfile from "./LoginAndProfile.js";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
-    <header className="flex justify-between items-center p-5 bg-white">
+    <header className="flex justify-between items-center p-12 bg-white">
       <nav className="font-bold text-xl">Tobrick</nav>
-      {NavText.map((nav, index) => (
-        <div key={index}>
-          <Navigation text={nav} />
+      {NavText.slice(0, 4).map((nav, id) => (
+        <div key={id}>
+          <Navigation
+            navName={nav.navName}
+            icon={nav.icon}
+            isNaVName={nav.isNavName}
+          />
         </div>
       ))}
 
@@ -27,11 +29,12 @@ const Header = () => {
         placeholder="Search"
       />
 
-      {LogAndProf.map((secondNav, index) => (
-        <div key={index}>
-          <LoginAndProfile
-            iconName={secondNav.iconName}
-            icon={secondNav.icon}
+      {NavText.slice(-2).map((nav, id) => (
+        <div key={id}>
+          <Navigation
+            navName={nav.navName}
+            icon={nav.icon}
+            isNaVName={nav.isNavName}
           />
         </div>
       ))}

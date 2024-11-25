@@ -1,23 +1,46 @@
 import cart from "./../assets/images/cart.svg";
+import user from "./../assets/images/user.svg";
+
+
+
 export const Cart = cart;
+export const UserProfile= user;
+
 
 export const NavText = [
-    "Catalogue", 
-    "Size", 
-    "Special Features", 
-    "About",
-];
-
-//create an array that take svg for the checkout and profile button
-
-export const LogAndProf = [
     {
-        iconName: "Checkout",
+        id:1,
+        navName: "Catalogue",
+        isNavName : true
+    },
+    {
+        id:2,
+        navName: "Size",
+        isNavName : true
+    },
+    {
+        id:3,
+        navName: "Special Features",
+        isNavName : true
+    },
+    {
+        id:4,
+        navName: "About",
+        isNavName : true
+    },
+    {
+        id:5,
+        navName: "Checkout",
+        isNavName : false,
         icon: Cart
     },
-
     {
-        iconName: "Profile",
-        icon: Cart
-    }
-]
+        id:6,
+        navName: "Profile",
+        isNavName : false,
+        icon: UserProfile
+    },
+   
+    
+];
+
