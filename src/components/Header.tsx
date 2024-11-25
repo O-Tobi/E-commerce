@@ -1,7 +1,8 @@
 const Header = () => {
     return (
-        <header>
-            <p>This the header</p>
+        <header className="flex">
+            <nav>ththt</nav>
+            <nav>dfhvi</nav>
         </header>
     )
 }
