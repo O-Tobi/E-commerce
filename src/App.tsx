@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/header/Header";
 import Hero from "./components/Hero";
 import Login from "./components/Login";
 import CheckOut from "./components/CheckOut";
@@ -13,7 +12,6 @@ function App() {
         <Route path="hero" element={<Hero />} />
         <Route path="login" element={<Login />} />
         <Route path="checkout" element={<CheckOut />} />
-        <Route path="header" element={<Header />} />
       </Routes>
     </BrowserRouter>
   );

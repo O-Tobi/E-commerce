@@ -1,12 +1,13 @@
 import { NavText } from "../../utils/index.js";
 import Navigation from "./Navigation";
-import { Cart } from "../../utils/index.js";
+import { LogAndProf } from "../../utils/index.js";
+import LoginAndProfile from "./LoginAndProfile.js";
 
 const Header = () => {
   return (
     <header className="flex justify-between items-center p-5 bg-white">
       <nav className="font-bold text-xl">Tobrick</nav>
-      {NavText.slice(0, 4).map((nav, index) => (
+      {NavText.map((nav, index) => (
         <div key={index}>
           <Navigation text={nav} />
         </div>
@@ -26,11 +27,12 @@ const Header = () => {
         placeholder="Search"
       />
 
-      <nav><img src={Cart} alt="cart" width={18} height={18}/></nav>
-
-      {NavText.slice(-1).map((nav, index) => (
+      {LogAndProf.map((secondNav, index) => (
         <div key={index}>
-          <Navigation text={nav} />
+          <LoginAndProfile
+            iconName={secondNav.iconName}
+            icon={secondNav.icon}
+          />
         </div>
       ))}
     </header>

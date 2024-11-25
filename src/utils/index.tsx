@@ -6,5 +6,18 @@ export const NavText = [
     "Size", 
     "Special Features", 
     "About",
-    "Sign Up/ Login"
 ];
+
+//create an array that take svg for the checkout and profile button
+
+export const LogAndProf = [
+    {
+        iconName: "Checkout",
+        icon: Cart
+    },
+
+    {
+        iconName: "Profile",
+        icon: Cart
+    }
+]

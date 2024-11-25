@@ -10,9 +10,6 @@ const Navigation: React.FC<NavLinkProps> = ({text}) => {
     return (
         <NavLink to={`/${text.toLowerCase()}`}>
             {text} 
-            {/* <span>
-                <img src={Cart} alt="cart" width={18} height={18}/>
-            </span> */}
         </NavLink>
     )
 };
