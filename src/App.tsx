@@ -9,6 +9,7 @@ function App() {
 
   return (
     <>
+      <p>this is a test</p>
       <Header/>
       <Hero/>
       <Login />
