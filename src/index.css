@@ -29,7 +29,7 @@ body {
     @apply text-base;
   }
   .nav {
-    @apply p-2 md:p-10 items-center justify-between;
+    @apply p-2 md:p-10 items-center justify-between sticky space-x-2;
   }
   .navlink {
     @apply md:text-base font-semibold sm:text-sm;
@@ -48,7 +48,6 @@ body {
     md:w-4/12
    focus:outline-none 
    focus:ring-2
- focus:ring-accent
-   
+ focus:ring-accent;
   }
 }

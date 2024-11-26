@@ -4,14 +4,14 @@ import { NavLink } from "react-router-dom";
 
 interface NavLinkProps {
   navName: string;
-  isNaVName: boolean;
+  isNavName: boolean;
   icon: string | undefined;
 }
 
-const Navigation: React.FC<NavLinkProps> = ({ navName, isNaVName, icon }) => {
+const Navigation: React.FC<NavLinkProps> = ({ navName, isNavName, icon }) => {
   return (
     <div className="navlink">
-      {isNaVName ? (
+      {isNavName ? (
         <NavLink to={`/${navName.toLowerCase()}`}>{navName}</NavLink>
       ) : (
         <NavLink to={`/${navName.toLowerCase()}`}>
