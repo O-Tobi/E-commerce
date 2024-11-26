@@ -1,31 +1,35 @@
 import cart from "./../assets/images/cart.svg";
 import user from "./../assets/images/user.svg";
+import burger from "./../assets/images/hamburger.svg";
+import close from "./../assets/images/close.svg";
 
 
 
 export const Cart = cart;
 export const UserProfile= user;
+export const Menu = burger;
+export const Close = close;
 
 
 export const NavText = [
     {
         id:1,
-        navName: "Catalogue",
+        navName: "Today's Deal",
         isNavName : true
     },
     {
         id:2,
-        navName: "Size",
+        navName: "Customer Service",
         isNavName : true
     },
     {
         id:3,
-        navName: "Special Features",
+        navName: "Registry",
         isNavName : true
     },
     {
         id:4,
-        navName: "About",
+        navName: "Gift Card",
         isNavName : true
     },
     {

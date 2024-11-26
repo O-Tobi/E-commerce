@@ -1,19 +1,34 @@
-import { NavText } from "../../utils/index.js";
+import { 
+  NavText,
+  Menu,
+  Close,
+ } from "../../utils/index.js";
 import Navigation from "./Navigation";
+import { useState } from "react";
+
 
 const Header: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const toggle = () => {
+    setIsOpen((prevState) => !prevState)
+  };
+
   return (
-    <header className="flex justify-between items-center p-12 bg-white">
-      <nav className="font-bold text-xl">Tobrick</nav>
-      {NavText.slice(0, 4).map((nav, id) => (
-        <div key={id}>
-          <Navigation
-            navName={nav.navName}
-            icon={nav.icon}
-            isNaVName={nav.isNavName}
-          />
+    <header className="flex justify-between  p-10 bg-white ">
+      <div className="flex items-center space-x-8">
+        <nav className="font-bold text-2xl">Tobrick</nav>
+        <div className="hidden md:flex space-x-6">
+          {NavText.slice(0, 4).map((nav, id) => (
+            <Navigation
+              key={id}
+              navName={nav.navName}
+              icon={nav.icon}
+              isNaVName={nav.isNavName}
+            />
+          ))}
         </div>
-      ))}
+      </div>
 
       <input
         type="search"
@@ -25,19 +40,28 @@ const Header: React.FC = () => {
         focus:outline-none 
         focus:ring-2
       focus:ring-accent
-      w-3/12"
+      w-4/12"
         placeholder="Search"
       />
 
-      {NavText.slice(-2).map((nav, id) => (
-        <div key={id}>
-          <Navigation
-            navName={nav.navName}
-            icon={nav.icon}
-            isNaVName={nav.isNavName}
-          />
+      <button className="md:hidden" onClick={toggle}>
+        {isOpen ? <img src={Close} alt="Menu" width={25} height={25}/> : 
+        <img src={Menu} alt="Menu" width={25} height={25}/> }
+      </button>
+      
+
+      <div className="flex items-center space-x-8">
+        <div className="hidden md:flex space-x-6">
+          {NavText.slice(-2).map((nav, id) => (
+            <Navigation
+              key={id}
+              navName={nav.navName}
+              icon={nav.icon}
+              isNaVName={nav.isNavName}
+            />
+          ))}
         </div>
-      ))}
+      </div>
     </header>
   );
 };
