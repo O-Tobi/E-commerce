@@ -7,3 +7,47 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  width: 100dvw;
+  overflow-x: hidden;
+  height: 100%;
+  user-select: none;
+}
+
+@layer base {
+  h1 {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+  h2 {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold;
+  }
+  h3 {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium;
+  }
+  p {
+    @apply text-base;
+  }
+  .nav {
+    @apply p-2 md:p-10 items-center justify-between sticky space-x-2;
+  }
+  .navlink {
+    @apply md:text-base font-semibold sm:text-sm;
+  }
+  .logo {
+    @apply font-bold text-lg md:text-2xl;
+  }
+  .input {
+    @apply border
+    border-primary
+    rounded-3xl 
+    px-2
+    md:px-4 
+    md:py-2 
+    w-7/12
+    md:w-4/12
+   focus:outline-none 
+   focus:ring-2
+ focus:ring-accent;
+  }
+}

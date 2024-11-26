@@ -1,8 +1,12 @@
+import Header from "./header/Header";
+import Hero from "./Hero";
+
 const Home = () => {
     return (
-        <header>
-            <p>This the Home</p>
-        </header>
+        <main>
+            <Header />
+            <Hero/> 
+        </main>
     )
 }
 
