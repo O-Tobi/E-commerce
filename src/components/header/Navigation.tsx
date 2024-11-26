@@ -10,7 +10,7 @@ interface NavLinkProps {
 
 const Navigation: React.FC<NavLinkProps> = ({ navName, isNaVName, icon }) => {
   return (
-    <div className="font-semibold">
+    <div className="navlink">
       {isNaVName ? (
         <NavLink to={`/${navName.toLowerCase()}`}>{navName}</NavLink>
       ) : (
