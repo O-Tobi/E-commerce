@@ -3,6 +3,7 @@ import user from "./../assets/images/user.svg";
 import burger from "./../assets/images/hamburger.svg";
 import close from "./../assets/images/close.svg";
 import search from "./../assets/images/search.svg";
+import black from "./../assets/images/blackfriday.jpg";
 
 
 
@@ -11,6 +12,7 @@ export const UserProfile= user;
 export const Menu = burger;
 export const Close = close;
 export const Search = search;
+export const BlackFriday =black
 
 
 export const NavText = [
