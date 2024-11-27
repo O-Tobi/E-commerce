@@ -2,6 +2,7 @@ import cart from "./../assets/images/cart.svg";
 import user from "./../assets/images/user.svg";
 import burger from "./../assets/images/hamburger.svg";
 import close from "./../assets/images/close.svg";
+import search from "./../assets/images/search.svg";
 
 
 
@@ -9,6 +10,7 @@ export const Cart = cart;
 export const UserProfile= user;
 export const Menu = burger;
 export const Close = close;
+export const Search = search;
 
 
 export const NavText = [
