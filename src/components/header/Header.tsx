@@ -46,7 +46,6 @@ const Header: React.FC = () => {
 
           {/* hamburger menu */}
           <MenuComponent />
-          
         </div>
       </header>
 
@@ -54,7 +53,6 @@ const Header: React.FC = () => {
       <div className="flex md:hidden w-full px-2  ">
         <InputComponent className="flex text-sm  w-full px-2 mx-0.5 h-8" />
       </div>
-
     </div>
   );
 };

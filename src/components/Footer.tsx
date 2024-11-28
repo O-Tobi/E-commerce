@@ -54,6 +54,8 @@ const Footer = () => {
         </div>
       </nav>
     </footer>
+
+    // apply toast that ask if they want to contact the developer
   );
 };
 
