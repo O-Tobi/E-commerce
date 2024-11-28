@@ -50,7 +50,7 @@ const Header: React.FC = () => {
       </header>
 
       {/* search bar on sm  */}
-      <div className="flex md:hidden w-full px-2  ">
+      <div className="flex md:hidden w-full px-2 mb-2">
         <InputComponent className="flex text-sm  w-full px-2 mx-0.5 h-8" />
       </div>
     </div>
