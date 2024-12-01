@@ -1,5 +1,5 @@
 import { NavText } from "../../utils/index.js";
-import Navigation from "./Navigation";
+import Navigation from "../../utils/Navigation.js";
 import MenuComponent from "./Menu.js";
 import InputComponent from "./Input.js";
 

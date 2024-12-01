@@ -1,5 +1,5 @@
 import { NavText, Menu, Close } from "../../utils/index.js";
-import Navigation from "./Navigation";
+import Navigation from "../../utils/Navigation.js";
 import { useState } from "react";
 
 const MenuComponent = () => {
