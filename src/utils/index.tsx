@@ -105,3 +105,34 @@ export const FooterServices = [
         navStyle:" "
     },
 ]
+
+export const  FooterCompany = [
+    {
+        id:1,
+        navName: "About Us",
+        isNavName : true,
+        icon: "",
+        navStyle:" "
+    },
+    {
+        id:2,
+        navName: "Contact",
+        isNavName : true,
+        icon: "",
+        navStyle:" "
+    },
+    {
+        id:3,
+        navName: "Jobs",
+        isNavName : true,
+        icon: "",
+        navStyle:" "
+    },
+    {
+        id:4,
+        navName: "Press Kit",
+        isNavName : true,
+        icon: "",
+        navStyle:" "
+    },
+]
