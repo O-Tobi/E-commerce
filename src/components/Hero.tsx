@@ -1,4 +1,5 @@
-import { BlackFriday, ManInCoat, Sales, Swirl } from "../utils";
+import { Sales, Swirl, SmallImages } from "../utils";
+import SmallImageMap from "../utils/SmallImageMap";
 
 const Hero = () => {
   return (
@@ -46,29 +47,9 @@ const Hero = () => {
               <img className="object-contain w-auto h-48" src={Swirl} alt="" />
             </div>
 
-            <div className="w-4/12 relative px-1 shadow-lg">
-              <img
-                className="object-cover rounded-box w-full h-full"
-                src={BlackFriday}
-                alt=""
-              />
-            </div>
-
-            <div className="w-4/12 relative px-1 shadow-lg">
-              <img
-                className="object-cover rounded-box w-full h-full"
-                src={ManInCoat}
-                alt=""
-              />
-            </div>
-
-            <div className="w-4/12 relative px-1 shadow-lg">
-              <img
-                className="object-cover rounded-box w-full h-full"
-                src={Sales}
-                alt=""
-              />
-            </div>
+            {SmallImages.map((img, index) => (
+              <SmallImageMap key={index} imageName={img} />
+            ))}
           </div>
         </div>
       </div>

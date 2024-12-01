@@ -72,3 +72,6 @@ export const NavText = [
     
 ];
 
+
+export const SmallImages = [Sales, ManInCoat, BlackFriday]
+
