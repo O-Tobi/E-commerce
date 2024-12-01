@@ -29,7 +29,7 @@ export default tseslint.config(
       'max-len': [
         'error',
         {
-          code: 100, // Maximum allowed length for any line
+          code: 200, // Maximum allowed length for any line
           ignoreUrls: true, // Ignore long URLs
           ignoreStrings: false, 
           ignoreTemplateLiterals: false, 

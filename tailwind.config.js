@@ -42,5 +42,10 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('daisyui'),
+  ],
+  daisyui: {
+    themes: ["light"] //toggle light and dark mode here
+  }
 }

@@ -17,10 +17,10 @@ body {
 
 @layer base {
   h1 {
-    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold;
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold sm:text-6xl xl:text-8xl;
   }
   h2 {
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold;
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-3xl font-semibold;
   }
   h3 {
     @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium;
@@ -50,4 +50,11 @@ body {
    focus:ring-2
  focus:ring-accent;
   }
+  .icon-size {
+    @apply w-[18px] h-[18px] sm:w-[25px] sm:h-[25px];
+  }
+  .gb-mg {
+    @apply md:mx-5
+  }
+  
 }
