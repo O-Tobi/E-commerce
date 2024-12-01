@@ -75,3 +75,33 @@ export const NavText = [
 
 export const SmallImages = [Sales, ManInCoat, BlackFriday]
 
+export const FooterServices = [
+    {
+        id:1,
+        navName: "Branding",
+        isNavName : true,
+        icon: "",
+        navStyle:" "
+    },
+    {
+        id:2,
+        navName: "Design",
+        isNavName : true,
+        icon: "",
+        navStyle:" "
+    },
+    {
+        id:3,
+        navName: "Marketing",
+        isNavName : true,
+        icon: "",
+        navStyle:" "
+    },
+    {
+        id:4,
+        navName: "Advertisement",
+        isNavName : true,
+        icon: "",
+        navStyle:" "
+    },
+]

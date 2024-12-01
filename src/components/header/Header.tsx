@@ -19,6 +19,7 @@ const Header: React.FC = () => {
                 navName={nav.navName}
                 icon={nav.icon}
                 isNavName={nav.isNavName}
+                navStyle="bold-xl md:text-base font-semibold sm:text-sm"
               />
             ))}
           </div>

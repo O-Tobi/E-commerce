@@ -1,12 +1,20 @@
+import { FooterServices } from "../utils";
+import Navigation from "../utils/Navigation";
+
 const Footer = () => {
   return (
     <footer className="footer bg-base-300 text-base-content p-10">
       <nav>
         <h6 className="footer-title">Services</h6>
-        <a className="link link-hover">Branding</a>
-        <a className="link link-hover">Design</a>
-        <a className="link link-hover">Marketing</a>
-        <a className="link link-hover">Advertisement</a>
+        {FooterServices.map((service, id) => (
+          <Navigation
+            key={id}
+            navName={service.navName}
+            isNavName={service.isNavName}
+            icon={service.icon}
+            navStyle="link link-hover"
+          />
+        ))}
       </nav>
       <nav>
         <h6 className="footer-title">Company</h6>

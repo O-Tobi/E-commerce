@@ -48,7 +48,7 @@ const Hero = () => {
             </div>
 
             {SmallImages.map((img, index) => (
-              <SmallImageMap key={index} imageName={img} />
+              <SmallImageMap key={index} imageName={img}/>
             ))}
           </div>
         </div>
