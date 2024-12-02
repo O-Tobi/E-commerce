@@ -6,10 +6,15 @@ interface NavLinkProps {
   navName: string;
   isNavName: boolean;
   icon: string | undefined;
-  navStyle? : string;
+  navStyle?: string;
 }
 
-const Navigation: React.FC<NavLinkProps> = ({ navStyle= " ", navName, isNavName, icon }) => {
+const Navigation: React.FC<NavLinkProps> = ({
+  navStyle = " ",
+  navName,
+  isNavName,
+  icon,
+}) => {
   return (
     <div className={`/${navStyle}`}>
       {isNavName ? (

@@ -1,4 +1,4 @@
-import { Search } from "../../utils";
+import { Search } from "../../utils/assets";
 
 interface InputComponentProps {
   className: string;

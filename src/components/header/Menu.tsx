@@ -1,4 +1,5 @@
-import { NavText, Menu, Close } from "../../utils/index.js";
+import { Menu, Close } from "./../../utils/assets.js";
+import { NavText } from "../../utils/constants.js";
 import Navigation from "../../utils/Navigation.js";
 import { useState } from "react";
 
