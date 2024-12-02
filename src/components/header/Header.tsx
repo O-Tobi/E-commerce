@@ -1,4 +1,4 @@
-import { NavText } from "../../utils/index.js";
+import { NavText } from "../../utils/constants.js";
 import Navigation from "../../utils/Navigation.js";
 import MenuComponent from "./Menu.js";
 import InputComponent from "./Input.js";
@@ -19,6 +19,7 @@ const Header: React.FC = () => {
                 navName={nav.navName}
                 icon={nav.icon}
                 isNavName={nav.isNavName}
+                navStyle="bold-xl md:text-base font-semibold sm:text-sm"
               />
             ))}
           </div>

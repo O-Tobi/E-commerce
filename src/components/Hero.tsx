@@ -1,4 +1,5 @@
-import { Sales, Swirl, SmallImages } from "../utils";
+import { Sales, Swirl } from "./../utils/assets";
+import { SmallImages } from "../utils/constants";
 import SmallImageMap from "../utils/SmallImageMap";
 
 const Hero = () => {

@@ -8,7 +8,7 @@ const SmallImageMap: React.FC<SmallImageMapProps> = ({ imageName }) => {
       <img
         className="object-cover rounded-box w-full h-full"
         src={imageName}
-        alt=""
+        alt={imageName.toLowerCase()}
       />
     </div>
   );
