@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-//import { Cart } from "../../utils";
+
 
 interface NavLinkProps {
   navName: string;
@@ -30,4 +30,3 @@ const Navigation: React.FC<NavLinkProps> = ({
 
 export default Navigation;
 
-// navlink link link-hover

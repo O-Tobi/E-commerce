@@ -1,6 +1,6 @@
-import {Twitter, Youtube, Facebook } from "./../utils/assets";
-import { FooterServices, FooterCompany } from "../utils/constants";
-import Navigation from "../utils/Navigation";
+import {Twitter, Youtube, Facebook } from "../../utils/assets";
+import { FooterServices, FooterCompany } from "../../utils/constants";
+import Navigation from "../../utils/Navigation";
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
