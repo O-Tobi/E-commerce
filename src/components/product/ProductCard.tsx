@@ -18,7 +18,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           alt={`${productName.toLocaleLowerCase()}`}
         />
       </figure>
-      <div className="card-body items-center text-center">
+      <div className="card-body items-center text-center ">
         <h6>{productName}</h6>
 
         <div className="card-actions card-title justify-end">
