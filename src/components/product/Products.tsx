@@ -2,7 +2,7 @@ import ProductCard from "./ProductCard";
 import useApi from "../../services/apiCall";
 
 const Products = () => {
-    const {data, error, loading} = useApi<{id: number; title: string; image: string; description: string;}>({apiParams: "products"})
+    const {data, error, loading} = useApi<{id: number; title: string; image: string; price: number;}>({apiParams: "products"})
 
     if (loading) {
         return <div>...loading</div>
@@ -17,13 +17,13 @@ const Products = () => {
     }
 
   return (
-    <section className="m-5 flex flex-wrap">
+    <section className="flex flex-wrap justify-between content-center my-5 mx-10 sm:px-5 md:px-0 ">
         {data?.map((product) => (
                 <ProductCard
                     key={product.id}
                     productName={product.title}
                     productImage={product.image}
-                    productDescription={product.description}
+                    productPrice={product.price}
                 />
             ))}
     </section>
