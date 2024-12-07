@@ -2,14 +2,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import CheckOut from "./pages/CheckOut";
 import Home from "./pages/Home";
+import Layout from "./components/layout/Layout";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="checkout" element={<CheckOut />} />
+        </Route>
+
         <Route path="login" element={<Login />} />
-        <Route path="checkout" element={<CheckOut />} />
       </Routes>
     </BrowserRouter>
   );

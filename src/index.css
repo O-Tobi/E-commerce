@@ -54,7 +54,7 @@ body {
     @apply w-[18px] h-[18px] sm:w-[25px] sm:h-[25px];
   }
   .gb-mg {
-    @apply md:mx-5
+    @apply md:mx-5 
   }
   
 }
