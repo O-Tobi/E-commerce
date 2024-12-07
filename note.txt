@@ -1,0 +1,1 @@
+add a transition effect to  the side menu using this: transform translate-x-full transition-transform duration-300
