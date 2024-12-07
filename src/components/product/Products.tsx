@@ -53,8 +53,9 @@ const Products = () => {
   }
 
   return (
-    <section className="my-5 mx-10 sm:px-5 md:px-0">
-      <div className="flex justify-between m-4">
+    <section className="my-5 mx-10 sm:px-5 md:px-0 ">
+        {/* filter buttons */}
+      <div className="hidden md:flex justify-between font-bold bg-red-100 my-12 mx-20 p-0">
         <button onClick={RenderAll}>All</button>
 
         {/* mapping through the categories from the API for filtering purpose */}
