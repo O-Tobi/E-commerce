@@ -17,6 +17,7 @@ const Products = () => {
   } = useApi<string[]>({ apiParams: "products/categories" });
 
   const [catFilter, setCatFilter] = useState<string>("all");
+  const [catName, setCatName] = useState<string>("All Products"); //this state changes the category name of the dropwon for sm
 
   if (loading || categoryLoading) {
     return (
@@ -35,7 +36,7 @@ const Products = () => {
   }
 
   //function to change the first letter of each words to uppercase
-  const Captialize = (i: string) => {
+  const Capitalize = (i: string) => {
     return i
       .split(" ")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -43,30 +44,69 @@ const Products = () => {
   };
 
   //get the value of the button clicked
-  const FilterHandler = (e) => {
-    const categoryValue = e.target.value;
+  const FilterHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const categoryValue = e.currentTarget.value;
     setCatFilter(categoryValue);
+    setCatName(Capitalize(categoryValue));
   };
 
-  const RenderAll = (e) => {
-    setCatFilter("all")
-  }
+  const RenderAll = () => {
+    setCatFilter("all");
+    setCatName("All Products");
+  };
+  
 
   return (
     <section className="my-5 mx-10 sm:px-5 md:px-0 ">
-        {/* filter buttons */}
-      <div className="hidden md:flex justify-between font-bold bg-red-100 my-12 mx-20 p-0">
-        <button onClick={RenderAll}>All</button>
+      <div className="md:hidden  mb-2 dropdown dropdown-hover">
+        <div tabIndex={0} role="button" className="btn m-1">
+          {catName}
+        </div>
+        <ul
+          tabIndex={0}
+          className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+        >
+          <li>
+            <button className="hover:underline" onClick={RenderAll}>
+              All
+            </button>
+          </li>
+          <li>
+            {/* mapping through the categories from the API for filtering purpose */}
+            {categoryData?.map((cat: string, index: number) => (
+              <button
+                className="hover:underline"
+                onClick={FilterHandler}
+                value={cat}
+                key={index}
+              >
+                {Capitalize(cat)}
+              </button>
+            ))}
+          </li>
+        </ul>
+      </div>
+
+      {/* filter buttons */}
+      <div className="hidden md:flex justify-between font-bold my-12 mx-20 p-0">
+        <button className="hover:underline" onClick={RenderAll}>
+          All
+        </button>
 
         {/* mapping through the categories from the API for filtering purpose */}
         {categoryData?.map((cat: string, index: number) => (
-          <button onClick={FilterHandler} value={cat} key={index}>
-            {Captialize(cat)}
+          <button
+            className="hover:underline"
+            onClick={FilterHandler}
+            value={cat}
+            key={index}
+          >
+            {Capitalize(cat)}
           </button>
         ))}
       </div>
 
-        {/* onMount render all products, on filter: displayed the filtered product while onclick all render all products all */}
+      {/* onMount render all products, on filter: displayed the filtered product while onclick all render all products all */}
       <div className="flex flex-wrap justify-between content-center  ">
         {catFilter !== "all"
           ? data?.map(
@@ -81,14 +121,13 @@ const Products = () => {
                 )
             )
           : data?.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    productName={product.title}
-                    productImage={product.image}
-                    productPrice={product.price}
-                  />
-                )
-            )}
+              <ProductCard
+                key={product.id}
+                productName={product.title}
+                productImage={product.image}
+                productPrice={product.price}
+              />
+            ))}
       </div>
     </section>
   );
