@@ -2,6 +2,7 @@ import ProductCard from "./ProductCard";
 import useApi from "../../services/apiCall";
 import { useState } from "react";
 
+
 const Products = () => {
   const { data, error, loading } = useApi<{
     id: number;
@@ -117,6 +118,7 @@ const Products = () => {
                     productName={product.title}
                     productImage={product.image}
                     productPrice={product.price}
+                    productId={product.id}
                   />
                 )
             )
@@ -126,6 +128,7 @@ const Products = () => {
                 productName={product.title}
                 productImage={product.image}
                 productPrice={product.price}
+                productId={product.id}
               />
             ))}
       </div>
