@@ -47,13 +47,13 @@ const ProductDetails = () => {
             <h4 className="font-bold text-2xl">${data?.price}</h4>
           </div>
           <div className="card-actions">
-            <button className="btn btn-primary btn-block text-white flex items-center gap-2 relative">
+            <button className="btn bg-primary btn-block text-white flex items-center gap-2 relative">
               <img
                 src={Cart}
                 className="h-4 w-4 absolute left-4 invert brightness-0"
                 alt="Cart Icon"
               />
-              <span className="mx-auto">Add to Cart</span>
+              <span className="mx-auto">ADD TO CART</span>
             </button>
           </div>
         </div>
