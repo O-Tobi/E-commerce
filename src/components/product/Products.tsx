@@ -1,6 +1,8 @@
 import ProductCard from "./ProductCard";
 import useApi from "../../services/apiCall";
 import { useState } from "react";
+import LoadingComponent from "../../utils/Loading";
+
 
 const Products = () => {
   const { data, error, loading } = useApi<{
@@ -21,10 +23,8 @@ const Products = () => {
 
   if (loading || categoryLoading) {
     return (
-      <div className="flex justify-center m-auto items-center content-center w-6/12">
-        <span className="loading loading-infinity w-full loop-gradient"></span>
-      </div>
-    );
+      <LoadingComponent />
+    )
   }
 
   if (error || categoryError) {
@@ -117,6 +117,7 @@ const Products = () => {
                     productName={product.title}
                     productImage={product.image}
                     productPrice={product.price}
+                    productId={product.id}
                   />
                 )
             )
@@ -126,6 +127,7 @@ const Products = () => {
                 productName={product.title}
                 productImage={product.image}
                 productPrice={product.price}
+                productId={product.id}
               />
             ))}
       </div>

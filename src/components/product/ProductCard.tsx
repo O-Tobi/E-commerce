@@ -1,16 +1,26 @@
+import {useNavigate } from "react-router-dom";
+
 interface ProductCardProps {
   productImage: string;
   productName: string;
   productPrice: number;
+  productId?: number
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   productImage,
   productName,
   productPrice,
+  productId
 }) => {
+  const navigate = useNavigate();
+
+  const navigateHandler = () => {
+    navigate(`product/${productId}`);
+  };
+
   return (
-    <div className="card card-normal gb-mg mb-10 bg-base-100 w-96 md:w-80 transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
+    <div onClick={navigateHandler} className="card card-normal gb-mg mb-10 bg-base-100 w-96 md:w-80 transition-transform duration-300 hover:scale-105 shadow-lg hover:shadow-xl cursor-pointer">
       <figure>
         <img
           className="h-40"

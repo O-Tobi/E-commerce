@@ -2,6 +2,7 @@ import { NavText } from "../../../utils/constants.js";
 import Navigation from "../../../utils/Navigation.js";
 import MenuComponent from "./Menu.js";
 import InputComponent from "./Input.js";
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const Header: React.FC = () => {
         {/* logo with first four nav */}
         <div className="flex-none space-x-8">
           {/* logo */}
-          <nav className="logo">Tobrick</nav>
+          <Link to="/" className="logo">Tobrick</Link>
           {/* first three navs */}
           <div className="hidden lg:flex space-x-4">
             {NavText.slice(0, 4).map((nav, id) => (
