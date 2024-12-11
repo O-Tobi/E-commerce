@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-
 interface NavLinkProps {
   navName: string;
   isNavName: boolean;
@@ -21,7 +20,14 @@ const Navigation: React.FC<NavLinkProps> = ({
         <NavLink to={`/${navName.toLowerCase()}`}>{navName}</NavLink>
       ) : (
         <NavLink to={`/${navName.toLowerCase()}`}>
-          <img src={icon} height={25} width={25} />
+          <button className="flex">
+            {icon && (
+              <img src={icon} height={25} width={25} alt={`${navName} Icon`} />
+            )}
+            {navName === "Checkout" ? (
+              <div className="badge bg-primary text-white">+99</div>
+            ) : null}
+          </button>
         </NavLink>
       )}
     </div>
@@ -29,4 +35,3 @@ const Navigation: React.FC<NavLinkProps> = ({
 };
 
 export default Navigation;
-
