@@ -67,9 +67,21 @@ const ProductDetails = () => {
           <div className="card-actions">
             {cartNumber !== 0 ? (
               <div className="flex items-center gap-2">
-                <button onClick={removeFromCart} className="btn bg-primary  text-white flex items-center text-2xl "> - </button>
+                <button
+                  onClick={removeFromCart}
+                  className="btn bg-primary  text-white flex items-center text-2xl "
+                >
+                  {" "}
+                  -{" "}
+                </button>
                 {cartNumber}
-                <button onClick={addToCart} className="btn bg-primary  text-white flex items-center text-2xl"> + </button>
+                <button
+                  onClick={addToCart}
+                  className="btn bg-primary  text-white flex items-center text-2xl"
+                >
+                  {" "}
+                  +{" "}
+                </button>
               </div>
             ) : (
               <button
