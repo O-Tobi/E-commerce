@@ -1,5 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import CartContext from "../context/CartContext";
 
 interface NavLinkProps {
   navName: string;
@@ -14,6 +16,15 @@ const Navigation: React.FC<NavLinkProps> = ({
   isNavName,
   icon,
 }) => {
+
+  const cartContext = useContext(CartContext)
+
+  if (!cartContext) {
+    throw new Error ("CartDisplay must be used within a CartProvider")
+  }
+
+  const {cartNumber} = cartContext;
+
   return (
     <div className={`/${navStyle}`}>
       {isNavName ? (
@@ -25,7 +36,7 @@ const Navigation: React.FC<NavLinkProps> = ({
               <img src={icon} height={25} width={25} alt={`${navName} Icon`} />
             )}
             {navName === "Checkout" ? (
-              <div className="badge bg-primary text-white">+99</div>
+              <div className="badge bg-primary text-white">{cartNumber}</div>
             ) : null}
           </button>
         </NavLink>

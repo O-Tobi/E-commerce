@@ -2,6 +2,8 @@ import useApi from "../../services/apiCall";
 import { useParams } from "react-router-dom";
 import LoadingComponent from "../../utils/Loading";
 import { Cart } from "../../utils/assets";
+import CartContext from "../../context/CartContext";
+import { useContext } from "react";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -18,6 +20,14 @@ const ProductDetails = () => {
     };
   }>({ apiParams: `products/${id}` });
 
+  const cartContext = useContext(CartContext);
+
+  if (!cartContext) {
+    throw new Error("CartDisplay must be used within a CartProvider");
+  }
+
+  const { cartNumber, setCartNumber } = cartContext;
+
   if (error) {
     <>...error</>;
   }
@@ -25,6 +35,11 @@ const ProductDetails = () => {
   if (loading) {
     return <LoadingComponent />;
   }
+
+  const cartUpdate = () => {
+    setCartNumber(cartNumber + 1);
+    console.log(cartNumber);
+  };
 
   return (
     <div className="flex justify-center my-5 mx-2">
@@ -47,7 +62,10 @@ const ProductDetails = () => {
             <h4 className="font-bold text-2xl">${data?.price}</h4>
           </div>
           <div className="card-actions">
-            <button className="btn bg-primary btn-block text-white flex items-center gap-2 relative">
+            <button
+              onClick={cartUpdate}
+              className="btn bg-primary btn-block text-white flex items-center gap-2 relative"
+            >
               <img
                 src={Cart}
                 className="h-4 w-4 absolute left-4 invert brightness-0"
