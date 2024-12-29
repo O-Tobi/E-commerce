@@ -36,9 +36,12 @@ const ProductDetails = () => {
     return <LoadingComponent />;
   }
 
-  const cartUpdate = () => {
+  const addToCart = () => {
     setCartNumber(cartNumber + 1);
-    console.log(cartNumber);
+  };
+
+  const removeFromCart = () => {
+    setCartNumber(cartNumber - 1);
   };
 
   return (
@@ -62,17 +65,25 @@ const ProductDetails = () => {
             <h4 className="font-bold text-2xl">${data?.price}</h4>
           </div>
           <div className="card-actions">
-            <button
-              onClick={cartUpdate}
-              className="btn bg-primary btn-block text-white flex items-center gap-2 relative"
-            >
-              <img
-                src={Cart}
-                className="h-4 w-4 absolute left-4 invert brightness-0"
-                alt="Cart Icon"
-              />
-              <span className="mx-auto">ADD TO CART</span>
-            </button>
+            {cartNumber !== 0 ? (
+              <div className="flex items-center gap-2">
+                <button onClick={removeFromCart} className="btn bg-primary  text-white flex items-center text-2xl "> - </button>
+                {cartNumber}
+                <button onClick={addToCart} className="btn bg-primary  text-white flex items-center text-2xl"> + </button>
+              </div>
+            ) : (
+              <button
+                onClick={addToCart}
+                className="btn bg-primary btn-block text-white flex items-center gap-2 relative"
+              >
+                <img
+                  src={Cart}
+                  className="h-4 w-4 absolute left-4 invert brightness-0"
+                  alt="Cart Icon"
+                />
+                <span className="mx-auto">ADD TO CART</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
