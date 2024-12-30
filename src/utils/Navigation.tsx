@@ -16,14 +16,13 @@ const Navigation: React.FC<NavLinkProps> = ({
   isNavName,
   icon,
 }) => {
-
-  const cartContext = useContext(CartContext)
+  const cartContext = useContext(CartContext);
 
   if (!cartContext) {
-    throw new Error ("CartDisplay must be used within a CartProvider")
+    throw new Error("CartDisplay must be used within a CartProvider");
   }
 
-  const {cartNumber} = cartContext;
+  const { cartNumber } = cartContext;
 
   return (
     <div className={`/${navStyle}`}>
@@ -35,7 +34,7 @@ const Navigation: React.FC<NavLinkProps> = ({
             {icon && (
               <img src={icon} height={25} width={25} alt={`${navName} Icon`} />
             )}
-            {navName === "Checkout" ? (
+            {navName === "Checkout" && cartNumber !== 0 ? (
               <div className="badge bg-primary text-white">{cartNumber}</div>
             ) : null}
           </button>

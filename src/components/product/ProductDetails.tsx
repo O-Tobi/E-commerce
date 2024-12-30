@@ -26,7 +26,7 @@ const ProductDetails = () => {
     throw new Error("CartDisplay must be used within a CartProvider");
   }
 
-  const { cartNumber, setCartNumber } = cartContext;
+  const { cartNumber, setCartNumber, cartItem, setCartItem } = cartContext;
 
   if (error) {
     <>...error</>;
@@ -37,7 +37,18 @@ const ProductDetails = () => {
   }
 
   const addToCart = () => {
-    setCartNumber(cartNumber + 1);
+    setCartNumber((prevState) => prevState + 1);
+    setCartItem((prevState) => {
+      if (!prevState) {
+        return { [data?.id]: 1 };
+      }
+
+      return {
+        ...prevState,
+        [data?.id]: (prevState[data?.id]) + 1,
+      };
+    });
+    console.log(cartItem);
   };
 
   const removeFromCart = () => {
