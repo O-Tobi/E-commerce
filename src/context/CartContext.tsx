@@ -1,38 +1,36 @@
 import {
   createContext,
-  useState,
   ReactNode,
-  Dispatch,
-  SetStateAction,
+  useContext,
+  useReducer,
 } from "react";
 
-interface CartContextType {
-  cartNumber: number;
-  setCartNumber: Dispatch<SetStateAction<number>>;
-  cartItem: object | null;
-  setCartItem: Dispatch<SetStateAction<object>>;
-}
+type CartContextType = ReturnType<typeof useReducer>;
 
-const CartContext = createContext<CartContextType | null>(null);
+export const CartContext = createContext<CartContextType | null>(null);
 
 interface CartProviderProps {
   children: ReactNode;
+  reducer: React.Reducer<object, object >;
+  initialState: object;  
 }
 
-export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-  const [cartNumber, setCartNumber] = useState(0);
-  const [cartItem, setCartItem] = useState<object | null>(null);
+export const CartProvider: React.FC<CartProviderProps> = ({ reducer, initialState, children }) => {
 
-  const cartValue: CartContextType = {
-    cartNumber,
-    setCartNumber,
-    cartItem,
-    setCartItem,
-  };
+  const reducerValue = useReducer(reducer, initialState);
 
   return (
-    <CartContext.Provider value={cartValue}>{children}</CartContext.Provider>
+    <CartContext.Provider value={reducerValue}>
+      {children}
+    </CartContext.Provider>
   );
 };
 
-export default CartContext;
+
+export const useCartContext = ()=> {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error("useCartContext must be used within a CartProvider")
+  };
+  return context;
+};

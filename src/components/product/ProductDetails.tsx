@@ -2,8 +2,8 @@ import useApi from "../../services/apiCall";
 import { useParams } from "react-router-dom";
 import LoadingComponent from "../../utils/Loading";
 import { Cart } from "../../utils/assets";
-import CartContext from "../../context/CartContext";
-import { useContext } from "react";
+import { useCartContext } from "../../context/CartContext";
+
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -20,13 +20,8 @@ const ProductDetails = () => {
     };
   }>({ apiParams: `products/${id}` });
 
-  const cartContext = useContext(CartContext);
-
-  if (!cartContext) {
-    throw new Error("CartDisplay must be used within a CartProvider");
-  }
-
-  const { cartNumber, setCartNumber, cartItem, setCartItem } = cartContext;
+  const [{cart}, dispatch] = useCartContext()
+ 
 
   if (error) {
     <>...error</>;
@@ -37,22 +32,22 @@ const ProductDetails = () => {
   }
 
   const addToCart = () => {
-    setCartNumber((prevState) => prevState + 1);
-    setCartItem((prevState) => {
-      if (!prevState) {
-        return { [data?.id]: 1 };
+    dispatch({
+      type: "ADD_TO_CART",
+      item: {
+        id: data?.id,
+        title: data?.title,
+        image: data?.image,
+        price: data?.price,
       }
-
-      return {
-        ...prevState,
-        [data?.id]: (prevState[data?.id]) + 1,
-      };
-    });
-    console.log(cartItem);
+    })
   };
 
   const removeFromCart = () => {
-    setCartNumber(cartNumber - 1);
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      id: data?.id
+    })
   };
 
   return (
@@ -76,7 +71,7 @@ const ProductDetails = () => {
             <h4 className="font-bold text-2xl">${data?.price}</h4>
           </div>
           <div className="card-actions">
-            {cartNumber !== 0 ? (
+            {cart.length !== 0 ? (
               <div className="flex items-center gap-2">
                 <button
                   onClick={removeFromCart}
@@ -85,7 +80,7 @@ const ProductDetails = () => {
                   {" "}
                   -{" "}
                 </button>
-                {cartNumber}
+                <p>numbers to be calculated and removed</p>
                 <button
                   onClick={addToCart}
                   className="btn bg-primary  text-white flex items-center text-2xl"
