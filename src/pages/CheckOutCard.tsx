@@ -1,7 +1,14 @@
-const CheckOutCard = ({imageUrl, title, price, itemCount}) => {
+import { useNavigate } from "react-router-dom";
+
+const CheckOutCard = ({imageUrl, title, price, itemCount, itemId}) => {
+    const navigate = useNavigate()
+
+    const navigateHandler = () => {
+        navigate(`/products/${itemId}`)
+    } 
 
     return (
-        <div >
+        <div  onClick={navigateHandler}>
         <div className="divider m-0"></div>
         <div className="card-body">
             <img src={imageUrl}/>

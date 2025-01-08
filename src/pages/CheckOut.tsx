@@ -37,7 +37,7 @@ const CheckOut = () => {
     <section>
       <div className="flex flex-col lg:flex-row m-4 gap-4 ">
         <div className="card lg:w-8/12 bg-red-400 p-2 shadow-xl">
-          <h2 className="card-title">Cart {cart.length}</h2>
+          <h2 className="card-title">Cart ({cart.length})</h2>
           {uniqueCheckoutList.map((item) => (
             <CheckOutCard
               key={item.id}
@@ -45,6 +45,7 @@ const CheckOut = () => {
               title={item.title}
               price={item.price}
               itemCount={item.count}
+              itemId={item.id}
               
             />
           ))}
