@@ -4,7 +4,6 @@ import LoadingComponent from "../../utils/Loading";
 import { Cart } from "../../utils/assets";
 import { useCartContext } from "../../context/CartContext";
 
-
 const ProductDetails = () => {
   const { id } = useParams();
   const { data, error, loading } = useApi<{
@@ -20,8 +19,7 @@ const ProductDetails = () => {
     };
   }>({ apiParams: `products/${id}` });
 
-  const [{cart}, dispatch] = useCartContext()
- 
+  const [{ cart }, dispatch] = useCartContext();
 
   if (error) {
     <>...error</>;
@@ -39,16 +37,21 @@ const ProductDetails = () => {
         title: data?.title,
         image: data?.image,
         price: data?.price,
-      }
-    })
+      },
+    });
   };
 
   const removeFromCart = () => {
     dispatch({
       type: "REMOVE_FROM_CART",
-      id: data?.id
-    })
+      id: data?.id,
+    });
   };
+
+  // filter the cart by the curent id and get the length
+  //on each product detail page, display only the number of the the specific item present in the cart
+  const cartFilter = cart.filter((item) => item.id === data?.id);
+  const itemCount = cartFilter.length;
 
   return (
     <div className="flex justify-center my-5 mx-2">
@@ -71,7 +74,7 @@ const ProductDetails = () => {
             <h4 className="font-bold text-2xl">${data?.price}</h4>
           </div>
           <div className="card-actions">
-            {cart.length !== 0 ? (
+            {itemCount !== 0 ? (
               <div className="flex items-center gap-2">
                 <button
                   onClick={removeFromCart}
@@ -80,7 +83,7 @@ const ProductDetails = () => {
                   {" "}
                   -{" "}
                 </button>
-                <p>numbers to be calculated and removed</p>
+                <p>{itemCount}</p>
                 <button
                   onClick={addToCart}
                   className="btn bg-primary  text-white flex items-center text-2xl"

@@ -16,11 +16,6 @@ const Navigation: React.FC<NavLinkProps> = ({
   icon,
 }) => {
   const [{ cart }] = useCartContext();
-  console.log(cart)
-
-  // if (!cartContext) {
-  //   throw new Error("CartDisplay must be used within a CartProvider");
-  // }
 
   return (
     <div className={`/${navStyle}`}>
