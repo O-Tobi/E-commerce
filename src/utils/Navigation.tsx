@@ -16,6 +16,7 @@ const Navigation: React.FC<NavLinkProps> = ({
   icon,
 }) => {
   const [{ cart }] = useCartContext();
+  
 
   return (
     <div className={`/${navStyle}`}>

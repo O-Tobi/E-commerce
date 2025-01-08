@@ -91,6 +91,7 @@ const ProductDetails = () => {
                   {" "}
                   +{" "}
                 </button>
+                <p>({itemCount} item(s) added)</p>
               </div>
             ) : (
               <button

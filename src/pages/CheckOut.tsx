@@ -1,14 +1,44 @@
+import { useCartContext } from "../context/CartContext";
+import CheckOutCard from "./CheckOutCard";
+
 const CheckOut = () => {
+  const [{ cart }] = useCartContext();
+
+ 
+
+  const cartMap = cart.map(item => item.id);
+  const cartSet = new Set(cartMap);
+  const newCartArray = Array.from(cartSet);
+
+  const uniqueCheckoutList = newCartArray.map(id => (
+    cart.find(item => item.id === id)
+  ));
+  
+  const itemCount = newCartArray.map(id => {
+    const itemFilter = cart.filter(item => item.id === id);
+    const count  = itemFilter.length;
+    return count;
+  })
+
+  console.log(itemCount);
+
+  
+ 
+  
   return (
     <section>
       <div className="flex flex-col lg:flex-row m-4 gap-4 ">
-        <div className="card lg:w-8/12 bg-red-400 p-2 shadow-xl ">
-          <h2 className="card-title">Cart</h2>
-          <div className="divider m-0"></div>
-          <div className="card-body">cart content goes here</div>
-          <div className="card-actions">
-            remove and incdrement button goes here
-          </div>
+        <div className="card lg:w-8/12 bg-red-400 p-2 shadow-xl">
+          <h2 className="card-title">Cart {cart.length}</h2>
+          {uniqueCheckoutList.map((item) => (
+            <CheckOutCard
+              key={item.id}
+              imageUrl={item.image}
+              title={item.title}
+              price={item.price}
+              itemCount={itemCount}
+            />
+          ))}
         </div>
 
         <div className="card lg:w-4/12 bg-blue-400 p-2 shadow-xl">
