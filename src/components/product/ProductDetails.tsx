@@ -2,6 +2,7 @@ import useApi from "../../services/apiCall";
 import { useParams } from "react-router-dom";
 import LoadingComponent from "../../utils/Loading";
 import { Cart } from "../../utils/assets";
+import { useCartContext } from "../../context/CartContext";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -18,6 +19,8 @@ const ProductDetails = () => {
     };
   }>({ apiParams: `products/${id}` });
 
+  const [{ cart }, dispatch] = useCartContext();
+
   if (error) {
     <>...error</>;
   }
@@ -25,6 +28,30 @@ const ProductDetails = () => {
   if (loading) {
     return <LoadingComponent />;
   }
+
+  const addToCart = () => {
+    dispatch({
+      type: "ADD_TO_CART",
+      item: {
+        id: data?.id,
+        title: data?.title,
+        image: data?.image,
+        price: data?.price,
+      },
+    });
+  };
+
+  const removeFromCart = () => {
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      id: data?.id,
+    });
+  };
+
+  // filter the cart by the curent id and get the length
+  //on each product detail page, display only the number of the the specific item present in the cart
+  const cartFilter = cart.filter((item) => item.id === data?.id);
+  const itemCount = cartFilter.length;
 
   return (
     <div className="flex justify-center my-5 mx-2">
@@ -47,14 +74,38 @@ const ProductDetails = () => {
             <h4 className="font-bold text-2xl">${data?.price}</h4>
           </div>
           <div className="card-actions">
-            <button className="btn bg-primary btn-block text-white flex items-center gap-2 relative">
-              <img
-                src={Cart}
-                className="h-4 w-4 absolute left-4 invert brightness-0"
-                alt="Cart Icon"
-              />
-              <span className="mx-auto">ADD TO CART</span>
-            </button>
+            {itemCount !== 0 ? (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={removeFromCart}
+                  className="btn bg-primary  text-white flex items-center text-2xl "
+                >
+                  {" "}
+                  -{" "}
+                </button>
+                <p>{itemCount}</p>
+                <button
+                  onClick={addToCart}
+                  className="btn bg-primary  text-white flex items-center text-2xl"
+                >
+                  {" "}
+                  +{" "}
+                </button>
+                <p>({itemCount} item(s) added)</p>
+              </div>
+            ) : (
+              <button
+                onClick={addToCart}
+                className="btn bg-primary btn-block text-white flex items-center gap-2 relative"
+              >
+                <img
+                  src={Cart}
+                  className="h-4 w-4 absolute left-4 invert brightness-0"
+                  alt="Cart Icon"
+                />
+                <span className="mx-auto">ADD TO CART</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
