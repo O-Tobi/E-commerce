@@ -1,4 +1,4 @@
-const CheckOutCard = ({imageUrl, title, price}) => {
+const CheckOutCard = ({imageUrl, title, price, itemCount}) => {
 
     return (
         <div >
@@ -7,6 +7,7 @@ const CheckOutCard = ({imageUrl, title, price}) => {
             <img src={imageUrl}/>
             <h2>{title}</h2>
             <h5>{price}</h5>
+            <h5>{itemCount}</h5>
        
         </div>
         <div className="card-actions">

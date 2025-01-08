@@ -5,22 +5,30 @@ const CheckOut = () => {
   const [{ cart }] = useCartContext();
 
  
-
+  //map through the cart to isolate the ids
   const cartMap = cart.map(item => item.id);
+  // select only a single case of each repetitions
   const cartSet = new Set(cartMap);
+  // make the cartSet into an array of ids
   const newCartArray = Array.from(cartSet);
 
-  const uniqueCheckoutList = newCartArray.map(id => (
-    cart.find(item => item.id === id)
-  ));
+  //use the ids to map through the original cart and also do the count 
+  const uniqueCheckoutList = newCartArray.map((id) => {
+    // Find the unique item from the cart
+    const uniqueItem = cart.find((item) => item.id === id);
   
-  const itemCount = newCartArray.map(id => {
-    const itemFilter = cart.filter(item => item.id === id);
-    const count  = itemFilter.length;
-    return count;
-  })
+    // Count occurrences of this item in the cart
+    const count = cart.filter((item) => item.id === id).length;
+  
+    // Return a new object combining the item and its count
+    return {
+      ...uniqueItem,
+      count,
+    };
+  });
 
-  console.log(itemCount);
+
+  console.log(uniqueCheckoutList);
 
   
  
@@ -36,7 +44,8 @@ const CheckOut = () => {
               imageUrl={item.image}
               title={item.title}
               price={item.price}
-              itemCount={itemCount}
+              itemCount={item.count}
+              
             />
           ))}
         </div>
