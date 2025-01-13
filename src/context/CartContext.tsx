@@ -14,7 +14,9 @@ interface State {
 
 type Action =
   | { type: "ADD_TO_CART"; payload: CartItem }
+
   | { type: "REMOVE_FROM_CART"; payload: number | undefined};
+
 
 // Create the CartContext with the correct type
 type CartContextType = [State, React.Dispatch<Action>];
