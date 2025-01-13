@@ -4,7 +4,7 @@ export type State = {
 
 export type Action =
     | { type: "ADD_TO_CART"; item: { id: number; name: string; price: number } }
-    | { type: "REMOVE_FROM_CART"; id: number };
+    | { type: "REMOVE_FROM_CART";  id: number };
 
 export const initialState: State = {
     cart: [],
@@ -21,6 +21,7 @@ const reducer = (state: State, action: Action): State => {
         case "REMOVE_FROM_CART": {
             const newCart = [...state.cart];
             const index = state.cart.findIndex((cartItem) => cartItem.id === action.id);
+            console.log(index);
 
             if (index >= 0) {
                 newCart.splice(index, 1);

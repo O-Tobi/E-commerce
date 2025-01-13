@@ -32,19 +32,20 @@ const ProductDetails = () => {
   const addToCart = () => {
     dispatch({
       type: "ADD_TO_CART",
-      item: {
-        id: data?.id,
-        title: data?.title,
-        image: data?.image,
-        price: data?.price,
-      },
+      payload: {
+          id: data?.id,
+          title: data?.title,
+          image: data?.image,
+          price: data?.price,
+      }
     });
+    console.log(cart);
   };
 
   const removeFromCart = () => {
     dispatch({
       type: "REMOVE_FROM_CART",
-      id: data?.id,
+        payload:  data?.id,
     });
   };
 

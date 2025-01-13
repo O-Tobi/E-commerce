@@ -2,10 +2,10 @@ import { createContext, ReactNode, useContext, useReducer } from "react";
 
 // Define types for CartItem, State, and Action
 interface CartItem {
-  id: number;
-  title: string;
-  price: number;
-  image: string;
+  id?: number | undefined;
+  title?: string | undefined;
+  price?: number | undefined;
+  image?: string | undefined;
 }
 
 interface State {
@@ -14,7 +14,9 @@ interface State {
 
 type Action =
   | { type: "ADD_TO_CART"; payload: CartItem }
-  | { type: "REMOVE_FROM_CART"; payload: number };
+
+  | { type: "REMOVE_FROM_CART"; payload: number | undefined};
+
 
 // Create the CartContext with the correct type
 type CartContextType = [State, React.Dispatch<Action>];
