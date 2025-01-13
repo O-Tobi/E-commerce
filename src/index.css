@@ -15,6 +15,11 @@ body {
   user-select: none;
 }
 
+.loop-gradient {
+  background-image: linear-gradient(to right top, #051937, #0f465c, #437577, #84a394, #cad1bb);
+  opacity: 0.5;
+}
+
 @layer base {
   h1 {
     @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold sm:text-6xl xl:text-8xl;
@@ -56,5 +61,6 @@ body {
   .gb-mg {
     @apply md:mx-5 
   }
+
   
 }

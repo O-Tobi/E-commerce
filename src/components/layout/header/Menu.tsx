@@ -19,7 +19,7 @@ const MenuComponent = () => {
     >
       {isOpen ? (
         <div className="fixed top-0 right-0 z-50  bg-white shadow-lg w-64 h-full max-w-full overflow-auto">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center ">
             {/* Close Icon */}
             <div className="mt-3 ml-3 icon-size" >
               <img src={Close} alt="Close Menu" className="w-full h-full" />
