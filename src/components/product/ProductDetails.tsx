@@ -46,7 +46,6 @@ const ProductDetails = () => {
       type: "REMOVE_FROM_CART",
       id: data?.id,
     });
-    console.log(cart);
   };
 
   // filter the cart by the curent id and get the length
