@@ -33,20 +33,20 @@ const ProductDetails = () => {
     dispatch({
       type: "ADD_TO_CART",
       payload: {
-          id: data?.id,
-          title: data?.title,
-          image: data?.image,
-          price: data?.price,
-      }
+        id: data?.id,
+        title: data?.title,
+        image: data?.image,
+        price: data?.price,
+      },
     });
-    console.log(cart);
   };
 
   const removeFromCart = () => {
     dispatch({
       type: "REMOVE_FROM_CART",
-        id:  data?.id,
+      id: data?.id,
     });
+    console.log(cart);
   };
 
   // filter the cart by the curent id and get the length

@@ -14,7 +14,7 @@ interface State {
 
 type Action =
   | { type: "ADD_TO_CART"; payload: CartItem }
-  | { type: "REMOVE_FROM_CART"; id: number };
+  | { type: "REMOVE_FROM_CART"; id: number | undefined };
 
 // Create the CartContext with the correct type
 type CartContextType = [State, React.Dispatch<Action>];
@@ -35,7 +35,6 @@ const reducer = (state: State, action: Action): State => {
 
       if (action.id === undefined) {
         console.warn("Cannot remove an item without a valid id.");
-        console.log(action.id);
         return state;
       }
 
