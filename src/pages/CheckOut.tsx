@@ -1,9 +1,11 @@
 import { useCartContext } from "../context/CartContext";
+import { Cart } from "../utils/assets";
 import CheckOutCard from "./CheckOutCard";
 
 const CheckOut = () => {
-  const [{ cart }] = useCartContext(); // Destructure the state
+  const [{ cart }] = useCartContext();
 
+  // summarize the products such that only one product is shown it's count in the cart is diplayed
   const cartMap = cart.map((item) => item.id);
   const cartSet = new Set(cartMap);
   const newCartArray = Array.from(cartSet);
@@ -20,31 +22,50 @@ const CheckOut = () => {
 
   return (
     <section>
-      <div className="flex flex-col lg:flex-row m-4 gap-4">
-        <div className="card lg:w-8/12 p-2 shadow-xl">
-          <h2 className="card-title">Cart ({cart.length})</h2>
-          {uniqueCheckoutList.map((item) => (
-            <CheckOutCard
-              key={item.id}
-              imageUrl={item.image}
-              title={item.title}
-              price={item.price}
-              itemCount={item.count}
-              itemId={item.id}
-            />
-          ))}
-        </div>
-
-        <div className="card lg:w-4/12 bg-blue-400 p-2 shadow-xl">
-          <h2 className="card-title">Cart Summary</h2>
-          <div className="divider m-0"></div>
-          <div className="card-body">The summary</div>
-          <div className="divider m-0"></div>
-          <div className="card-action">
-            <button className="btn btn-block">CHECKOUT</button>
+      {uniqueCheckoutList.length === 0 ? (
+        <div className=" card my-10 shadow-xl mx-4">
+          <div className="card-body items-center">
+            <div className="bg-primary rounded-ful h-24 w-24 items-center avatar">
+              <figure>
+              <img src={Cart} className="h-14 w-14 invert brightness-0"  alt="Cart Icon"/>
+              </figure>
+            </div>
+            <div className="text-center">
+              <h3>Your cart is empty!</h3>
+              <p>Browse our categories and discover our best deals!</p>
+              <button className="btn bg-primary text-white">
+                Start Shopping
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="flex flex-col lg:flex-row m-4 gap-4">
+          <div className="card lg:w-8/12 p-2 shadow-xl">
+            <h2 className="card-title">Cart ({cart.length})</h2>
+            {uniqueCheckoutList.map((item) => (
+              <CheckOutCard
+                key={item.id}
+                imageUrl={item.image}
+                title={item.title}
+                price={item.price}
+                itemCount={item.count}
+                itemId={item.id}
+              />
+            ))}
+          </div>
+
+          <div className="card lg:w-4/12 bg-blue-400 p-2 shadow-xl">
+            <h2 className="card-title">Cart Summary</h2>
+            <div className="divider m-0"></div>
+            <div className="card-body">The summary</div>
+            <div className="divider m-0"></div>
+            <div className="card-action">
+              <button className="btn btn-block">CHECKOUT</button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
