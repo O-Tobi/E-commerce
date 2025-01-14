@@ -1,6 +1,7 @@
 import { useCartContext } from "../context/CartContext";
 import { Cart } from "../utils/assets";
 import CheckOutCard from "./CheckOutCard";
+import { Link } from "react-router-dom";
 
 const CheckOut = () => {
   const [{ cart }] = useCartContext();
@@ -25,16 +26,17 @@ const CheckOut = () => {
       {uniqueCheckoutList.length === 0 ? (
         <div className=" card my-10 shadow-xl mx-4">
           <div className="card-body items-center">
-            <div className="bg-primary rounded-ful h-24 w-24 items-center avatar">
+            <div className="bg-primary rounded-full h-24 w-24 items-center shadow-xl">
               <figure>
-              <img src={Cart} className="h-14 w-14 invert brightness-0"  alt="Cart Icon"/>
+              <img src={Cart} className=" invert brightness-0 m-4"  alt="Cart Icon"/>
               </figure>
             </div>
             <div className="text-center">
-              <h3>Your cart is empty!</h3>
-              <p>Browse our categories and discover our best deals!</p>
+              <h3 className="text-2xl">Your cart is empty!</h3>
+              <p className="my-1">Browse our categories and discover our best deals!</p>
               <button className="btn bg-primary text-white">
-                Start Shopping
+                <Link to="/">Start Shopping</Link>
+                
               </button>
             </div>
           </div>
