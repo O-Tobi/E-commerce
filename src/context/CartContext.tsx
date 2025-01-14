@@ -65,7 +65,7 @@ export const CartContext = createContext<CartContextType>([
 
 interface CartProviderProps {
   initialState: State;
-  reducer: Action;
+  reducer: (state: State, action: Action) => State;
   children: ReactNode;
 }
 
