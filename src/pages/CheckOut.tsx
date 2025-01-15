@@ -40,6 +40,15 @@ const CheckOut = () => {
     currency: "USD",
   }).format(checkoutSummary);
 
+  // const payment = () => {
+  //   // const clearance = uniqueCheckoutList.length=0;
+  //   // return clearance
+  //   const clearance = uniqueCheckoutList.splice(0, uniqueCheckoutList.length)
+  //   return clearance
+  // }
+
+  console.log(uniqueCheckoutList)
+
   return (
     <section>
       {uniqueCheckoutList.length === 0 ? (
@@ -81,17 +90,25 @@ const CheckOut = () => {
             ))}
           </div>
 
-          <div className="card lg:w-4/12 p-2 shadow-xl h-1/3">
-            <h2 className="card-title">Cart Summary</h2>
-            <div className="divider m-0"></div>
-            <div className="card-body flex-row justify-between font-bold text-4xl">
-              <p>Subtotal</p>
-              <p className="text-right">{currencyFormat}</p>
+          <div className="lg:w-4/12 h-full">
+            <div className="card shadow-xl p-2 h-1/3">
+              <h2 className="card-title">Cart Summary</h2>
+              <div className="divider m-0"></div>
+              <div className="card-body flex-row justify-between font-bold text-4xl">
+                <p>Subtotal</p>
+                <p className="text-right">{currencyFormat}</p>
+              </div>
+              <div className="divider m-0"></div>
+              <div className="card-action">
+                <button className="btn btn-block font-bold">
+                  CHECKOUT ({currencyFormat})
+                </button>
+              </div>
             </div>
-            <div className="divider m-0"></div>
-            <div className="card-action">
-              <button className="btn btn-block font-bold">
-                CHECKOUT ({currencyFormat})
+
+            <div className="py-2">
+              <button className="btn btn-block bg-primary text-white font-bold ">
+                <Link to="/">CONTINUE SHOPPING</Link>
               </button>
             </div>
           </div>
