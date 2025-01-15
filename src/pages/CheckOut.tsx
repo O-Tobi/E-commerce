@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const CheckOut = () => {
   const [{ cart }] = useCartContext();
 
-  // summarize the products such that only one product is shown it's count in the cart is diplayed
+  // summarize the products such that only one product is shown and its count in the cart is diplayed
   const cartMap = cart.map((item) => item.id);
   const cartSet = new Set(cartMap);
   const newCartArray = Array.from(cartSet);
@@ -14,12 +14,19 @@ const CheckOut = () => {
   const uniqueCheckoutList = newCartArray.map((id) => {
     const uniqueItem = cart.find((item) => item.id === id);
     const count = cart.filter((item) => item.id === id).length;
+    const productTotal = uniqueItem?.price * count;
 
     return {
       ...uniqueItem,
-      count,
+      count, productTotal
     };
   });
+
+
+  const checkoutSummary = uniqueCheckoutList.reduce((acc, product) => {
+    return acc + product.productTotal;
+  }, 0);
+  console.log(checkoutSummary)
 
   return (
     <section>
@@ -57,13 +64,16 @@ const CheckOut = () => {
             ))}
           </div>
 
-          <div className="card lg:w-4/12 bg-blue-400 p-2 shadow-xl">
+          <div className="card lg:w-4/12 p-2 shadow-xl h-1/3">
             <h2 className="card-title">Cart Summary</h2>
             <div className="divider m-0"></div>
-            <div className="card-body">The summary</div>
+            <div className="card-body flex-row justify-between font-bold text-4xl">
+              <p>Subtotal</p>
+              <p className="text-right">$ {checkoutSummary}</p>
+            </div>
             <div className="divider m-0"></div>
             <div className="card-action">
-              <button className="btn btn-block">CHECKOUT</button>
+              <button className="btn btn-block font-bold">CHECKOUT ($ {checkoutSummary})</button>
             </div>
           </div>
         </div>
