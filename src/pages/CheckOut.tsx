@@ -13,20 +13,32 @@ const CheckOut = () => {
 
   const uniqueCheckoutList = newCartArray.map((id) => {
     const uniqueItem = cart.find((item) => item.id === id);
+    if (!uniqueItem) {
+      throw new Error("Item with id not found in the cart");
+    }
+    //find the number of each item in the array
     const count = cart.filter((item) => item.id === id).length;
+
+    if (uniqueItem.price === undefined) {
+      throw new Error("price is undefined");
+    }
     const productTotal = uniqueItem?.price * count;
 
     return {
       ...uniqueItem,
-      count, productTotal
+      count,
+      productTotal,
     };
   });
-
 
   const checkoutSummary = uniqueCheckoutList.reduce((acc, product) => {
     return acc + product.productTotal;
   }, 0);
-  console.log(checkoutSummary)
+
+  const currencyFormat = new Intl.NumberFormat("en-us", {
+    style: "currency",
+    currency: "USD",
+  }).format(checkoutSummary);
 
   return (
     <section>
@@ -35,15 +47,20 @@ const CheckOut = () => {
           <div className="card-body items-center">
             <div className="bg-primary rounded-full h-24 w-24 items-center shadow-xl">
               <figure>
-              <img src={Cart} className=" invert brightness-0 m-4"  alt="Cart Icon"/>
+                <img
+                  src={Cart}
+                  className=" invert brightness-0 m-4"
+                  alt="Cart Icon"
+                />
               </figure>
             </div>
             <div className="text-center">
               <h3 className="text-2xl">Your cart is empty!</h3>
-              <p className="my-1">Browse our categories and discover our best deals!</p>
-              <button className="btn bg-primary text-white">
+              <p className="my-1">
+                Browse our categories and discover our best deals!
+              </p>
+              <button className="btn bg-primary text-white shadow-xl">
                 <Link to="/">Start Shopping</Link>
-                
               </button>
             </div>
           </div>
@@ -69,11 +86,13 @@ const CheckOut = () => {
             <div className="divider m-0"></div>
             <div className="card-body flex-row justify-between font-bold text-4xl">
               <p>Subtotal</p>
-              <p className="text-right">$ {checkoutSummary}</p>
+              <p className="text-right">{currencyFormat}</p>
             </div>
             <div className="divider m-0"></div>
             <div className="card-action">
-              <button className="btn btn-block font-bold">CHECKOUT ($ {checkoutSummary})</button>
+              <button className="btn btn-block font-bold">
+                CHECKOUT ({currencyFormat})
+              </button>
             </div>
           </div>
         </div>
