@@ -2,10 +2,10 @@ import { createContext, ReactNode, useContext, useReducer } from "react";
 
 // Define types for CartItem, State, and Action
 interface CartItem {
-  id?: number | undefined;
-  title?: string | undefined;
-  price?: number | undefined;
-  image?: string | undefined;
+  id: number | undefined;
+  title?: string;
+  price?: number;
+  image?: string;
 }
 
 interface State {
@@ -14,15 +14,13 @@ interface State {
 
 type Action =
   | { type: "ADD_TO_CART"; payload: CartItem }
-
-  | { type: "REMOVE_FROM_CART"; payload: number | undefined};
-
+  | { type: "REMOVE_FROM_CART"; id: number | undefined };
 
 // Create the CartContext with the correct type
 type CartContextType = [State, React.Dispatch<Action>];
 
 // Initial state for the cart
-const initialState: State = {
+export const initialState: State = {
   cart: [],
 };
 
@@ -31,20 +29,43 @@ const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "ADD_TO_CART":
       return { ...state, cart: [...state.cart, action.payload] };
-    case "REMOVE_FROM_CART":
-      return {
-        ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload),
-      };
+
+    case "REMOVE_FROM_CART": {
+      const { cart } = state;
+
+      if (action.id === undefined) {
+        console.warn("Cannot remove an item without a valid id.");
+        return state;
+      }
+
+      const index = cart.findIndex((cartItem) => cartItem.id === action.id);
+
+      if (index >= 0) {
+        const newCart = [...cart];
+        newCart.splice(index, 1);
+        return { ...state, cart: newCart };
+      } else {
+        console.warn(
+          `Cannot remove product with id: ${action.id} as it does not exist in the cart.`
+        );
+        return state;
+      }
+    }
+
     default:
       return state;
   }
 };
 
 // Create the CartContext
-export const CartContext = createContext<CartContextType | null>(null);
+export const CartContext = createContext<CartContextType>([
+  initialState,
+  () => {},
+]);
 
 interface CartProviderProps {
+  initialState: State;
+  reducer: (state: State, action: Action) => State;
   children: ReactNode;
 }
 
@@ -53,17 +74,13 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const reducerValue = useReducer(reducer, initialState);
 
   return (
-    <CartContext.Provider value={reducerValue}>
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={reducerValue}>{children}</CartContext.Provider>
   );
 };
 
 // Custom hook to access the CartContext
 export const useCartContext = (): CartContextType => {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error("useCartContext must be used within a CartProvider");
-  }
-  return context;
+  return useContext(CartContext);
 };
+
+export default reducer;

@@ -7,7 +7,7 @@ import { useCartContext } from "../../context/CartContext";
 const ProductDetails = () => {
   const { id } = useParams();
   const { data, error, loading } = useApi<{
-    id: number;
+    id: number | undefined;
     title: string;
     image: string;
     price: number;
@@ -33,19 +33,18 @@ const ProductDetails = () => {
     dispatch({
       type: "ADD_TO_CART",
       payload: {
-          id: data?.id,
-          title: data?.title,
-          image: data?.image,
-          price: data?.price,
-      }
+        id: data?.id,
+        title: data?.title,
+        image: data?.image,
+        price: data?.price,
+      },
     });
-    console.log(cart);
   };
 
   const removeFromCart = () => {
     dispatch({
       type: "REMOVE_FROM_CART",
-        payload:  data?.id,
+      id: data?.id,
     });
   };
 
