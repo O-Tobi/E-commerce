@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useCartContext } from "../context/CartContext";
 import { Cart } from "../utils/assets";
 import CheckOutCard from "./CheckOutCard";
@@ -11,43 +12,50 @@ const CheckOut = () => {
   const cartSet = new Set(cartMap);
   const newCartArray = Array.from(cartSet);
 
-  const uniqueCheckoutList = newCartArray.map((id) => {
-    const uniqueItem = cart.find((item) => item.id === id);
-    if (!uniqueItem) {
-      throw new Error("Item with id not found in the cart");
-    }
-    //find the number of each item in the array
-    const count = cart.filter((item) => item.id === id).length;
+  const uniqueCheckoutList = useMemo(() => {
+    return newCartArray.map((id) => {
+      const uniqueItem = cart.find((item) => item.id === id);
+      if (!uniqueItem) {
+        throw new Error("Item with id not found in the cart");
+      }
+      // Find the number of each item in the array
+      const count = cart.filter((item) => item.id === id).length;
 
-    if (uniqueItem.price === undefined) {
-      throw new Error("price is undefined");
-    }
-    const productTotal = uniqueItem?.price * count;
+      if (uniqueItem.price === undefined) {
+        throw new Error("price is undefined");
+      }
+      const productTotal = uniqueItem.price * count;
 
-    return {
-      ...uniqueItem,
-      count,
-      productTotal,
-    };
-  });
+      return {
+        ...uniqueItem,
+        count,
+        productTotal,
+      };
+    });
+  }, [cart, newCartArray]);
 
-  const checkoutSummary = uniqueCheckoutList.reduce((acc, product) => {
-    return acc + product.productTotal;
-  }, 0);
+  // Memoize checkout summary as well if necessary to avoid recalculation on each render
+  const checkoutSummary = useMemo(() => {
+    return uniqueCheckoutList.reduce(
+      (acc, product) => acc + product.productTotal,
+      0
+    );
+  }, [uniqueCheckoutList]);
 
+  //format the figures into currency
   const currencyFormat = new Intl.NumberFormat("en-us", {
     style: "currency",
     currency: "USD",
   }).format(checkoutSummary);
 
-  // const payment = () => {
-  //   // const clearance = uniqueCheckoutList.length=0;
-  //   // return clearance
-  //   const clearance = uniqueCheckoutList.splice(0, uniqueCheckoutList.length)
-  //   return clearance
-  // }
-
-  console.log(uniqueCheckoutList)
+  const payment = () => {
+    // const clearance = uniqueCheckoutList.length=0;
+    // return clearance
+    const clearance = uniqueCheckoutList.splice(0, uniqueCheckoutList.length)
+    console.log(clearance)
+    return clearance 
+  }
+  //console.log("after payment", uniqueCheckoutList );
 
   return (
     <section>
@@ -100,16 +108,18 @@ const CheckOut = () => {
               </div>
               <div className="divider m-0"></div>
               <div className="card-action">
-                <button className="btn btn-block font-bold">
+                <button onClick={payment} className="btn btn-block font-bold">
                   CHECKOUT ({currencyFormat})
                 </button>
               </div>
             </div>
 
             <div className="py-2">
-              <button className="btn btn-block bg-primary text-white font-bold ">
-                <Link to="/">CONTINUE SHOPPING</Link>
-              </button>
+              <Link to="/">
+                <button  className="btn btn-block bg-primary text-white font-bold ">
+                  CONTINUE SHOPPING
+                </button>
+              </Link>
             </div>
           </div>
         </div>
