@@ -5,7 +5,9 @@ import InputComponent from "./Input.js";
 import { Link } from "react-router-dom";
 
 
+
 const Header: React.FC = () => {
+
   return (
     <div className="items-center">
       <header className="navbar justify-between px-4 pt-2">
@@ -29,7 +31,7 @@ const Header: React.FC = () => {
 
         {/* search input */}
 
-        <InputComponent className="hidden md:flex h-10" />
+        <InputComponent  className="hidden md:flex h-10" />
 
         {/* 
     last two navigations alone on lg
