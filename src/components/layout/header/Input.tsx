@@ -11,16 +11,16 @@ const InputComponent: React.FC<InputComponentProps> = ({ className = "" }) => {
   const {setInput} = useSearchContext();
   const [tempInput, setTempInput ] = useState("");
 
+  // handle the search input before update the global search context
   const handleLocalInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTempInput(e.target.value);
-    console.log(tempInput);
   };
 
+  // update the global context on keypress Enter
   const handleContextUpdate = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if(e.key === "Enter" && tempInput.length !== 0) {
       setInput(tempInput);
       setTempInput("");
-      console.log("search text:", tempInput)
     };
   };
 

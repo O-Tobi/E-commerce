@@ -61,6 +61,8 @@ const ProductDetails = () => {
         </figure>
         <div className="card-body h-2/4">
           <h2 className="card-title mb-2">{data?.title}</h2>
+
+          
           {/* use the capitalize function here */}
           <h6 className="text-sm">
             Category:{" "}

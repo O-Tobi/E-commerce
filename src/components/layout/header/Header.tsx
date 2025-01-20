@@ -3,10 +3,17 @@ import Navigation from "../../../utils/Navigation.js";
 import MenuComponent from "./Menu.js";
 import InputComponent from "./Input.js";
 import { Link } from "react-router-dom";
+import useSearchContext from "../../../context/SearchContext.js";
 
 
 
 const Header: React.FC = () => {
+  const {setInput} = useSearchContext();
+
+  const homehandler = () => {
+    setInput("");
+  };
+
 
   return (
     <div className="items-center">
@@ -14,7 +21,9 @@ const Header: React.FC = () => {
         {/* logo with first four nav */}
         <div className="flex-none space-x-8">
           {/* logo */}
+          <button onClick={homehandler}>
           <Link to="/" className="logo">Tobrick</Link>
+          </button>
           {/* first three navs */}
           <div className="hidden lg:flex space-x-4">
             {NavText.slice(0, 4).map((nav, id) => (

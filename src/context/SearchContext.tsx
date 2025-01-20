@@ -26,9 +26,7 @@ const useSearchContext = () => {
 };
 
 // Create the provider component
-export const SearchProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export const SearchProvider: React.FC<{ children: ReactNode }> = ({children}) => {
   const [input, setInput] = useState("");
 
   const value: SearchContextType = {
@@ -37,7 +35,9 @@ export const SearchProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   return (
-    <searchContext.Provider value={value}>{children}</searchContext.Provider>
+    <searchContext.Provider value={value}>
+        {children}
+    </searchContext.Provider>
   );
 };
 

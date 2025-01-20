@@ -19,7 +19,9 @@ const Products = () => {
   } = useApi<string[]>({ apiParams: "products/categories" });
 
   const [catFilter, setCatFilter] = useState<string>("all");
-  const [catName, setCatName] = useState<string>("All Products"); //this state changes the category name of the dropwon for sm
+
+  //this state changes the category name of the dropwon for sm
+  const [catName, setCatName] = useState<string>("All Products"); 
 
   if (loading || categoryLoading) {
     return (
@@ -107,7 +109,7 @@ const Products = () => {
       </div>
 
       {/* onMount render all products, on filter: displayed the filtered product while onclick all render all products all */}
-      <div className="flex flex-wrap justify-between content-center  ">
+      <div className="flex flex-wrap justify-between content-center">
         {catFilter !== "all"
           ? data?.map(
               (product) =>
