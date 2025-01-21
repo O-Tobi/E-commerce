@@ -34,7 +34,9 @@ const SearchPage = () => {
 
   return (
     <>
-      <h1 className="m-2">Search Result for "{input}"</h1>
+      <h1 className="m-2 text-left text-2xl md:text-4xl">
+        Search Result for: <span className="text-primary">"{input}"</span>
+      </h1>
       <div className="flex flex-wrap justify-between content-center mt-6">
         {searchResult.length !== 0 ? (
           searchResult.map((result) => (
@@ -47,11 +49,16 @@ const SearchPage = () => {
             />
           ))
         ) : (
-          <>
-            <h3>Search not found</h3>
+          <div className="w-full text-center m-4">
+            <h2 className="text-center text-2xl my-1">Search not found</h2>
             {/* style this button */}
-            <button onClick={homehandler}>Conntinue Shopping</button>
-          </>
+            <button
+              className="btn bg-primary text-white shadow-xl my-1"
+              onClick={homehandler}
+            >
+              Continue Shopping
+            </button>
+          </div>
         )}
       </div>
     </>
