@@ -4,11 +4,11 @@ import CheckOut from "./pages/CheckOut";
 import Home from "./pages/Home";
 import Layout from "./components/layout/Layout";
 import ProductDetails from "./components/product/ProductDetails";
-//import useSearchContext from "./context/SearchContext";
+
 
 
 function App() {
- // const { input } = useSearchContext();
+ 
 
   return (
     <BrowserRouter>

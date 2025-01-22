@@ -21,7 +21,7 @@ const Navigation: React.FC<NavLinkProps> = ({
   return (
     <div className={`/${navStyle}`}>
       {isNavName ? (
-        <NavLink to={`/${navName.toLowerCase()}`}>{navName}</NavLink>
+        <NavLink to = "">{navName}</NavLink>
       ) : (
         <NavLink to={`/${navName.toLowerCase()}`}>
           <button className="flex">
