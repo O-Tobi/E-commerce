@@ -1,6 +1,5 @@
 import { Cart, UserProfile, Sales, ManInCoat, BlackFriday } from "./assets";
 
-
 export const NavText = [
     {
         id:1,
@@ -101,4 +100,4 @@ export const  FooterCompany = [
         icon: "",
         navStyle:" "
     },
-]
+];

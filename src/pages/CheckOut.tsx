@@ -3,9 +3,13 @@ import { useCartContext } from "../context/CartContext";
 import { Cart } from "../utils/assets";
 import CheckOutCard from "./CheckOutCard";
 import { Link } from "react-router-dom";
+import useSearchContext from "../context/SearchContext";
+
 
 const CheckOut = () => {
   const [{ cart }] = useCartContext();
+  const { setInput } = useSearchContext();
+
 
   // summarize the products such that only one product is shown and its count in the cart is diplayed
   const cartMap = cart.map((item) => item.id);
@@ -47,6 +51,12 @@ const CheckOut = () => {
     style: "currency",
     currency: "USD",
   }).format(checkoutSummary);
+
+  const inputHandler = () => {
+    return setInput("");
+  };
+
+
 
   const payment = () => {
     // const clearance = uniqueCheckoutList.length=0;
@@ -115,7 +125,7 @@ const CheckOut = () => {
             </div>
 
             <div className="py-2">
-              <Link to="/">
+              <Link to="/" onClick={inputHandler}>
                 <button  className="btn btn-block bg-primary text-white font-bold ">
                   CONTINUE SHOPPING
                 </button>
